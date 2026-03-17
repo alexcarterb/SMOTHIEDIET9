@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Perfect Smoothie Plan | Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral: #FF7F50;
+            --mint: #B2D8D8;
+            --beige: #FAF9F6;
+            --dark-text: #2D3436;
+            --soft-pink: #FAD0C4;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--beige);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- UI Components --- */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--coral);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 127, 80, 0.3);
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 127, 80, 0.4);
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, var(--soft-pink) 0%, var(--beige) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #636e72;
+            margin-bottom: 30px;
+        }
+
+        /* --- Quiz Section --- */
+        #quiz-section {
+            display: none; /* Hidden by default */
+        }
+
+        .progress-container {
+            width: 100%;
+            background: #eee;
+            height: 8px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        #progress-bar {
+            width: 20%;
+            height: 100%;
+            background: var(--mint);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .question-card h2 {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .options-list {
+            list-style: none;
+        }
+
+        .option-item {
+            background: #f9f9f9;
+            border: 2px solid #eee;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .option-item:hover {
+            border-color: var(--mint);
+            background: #f0fafa;
+        }
+
+        /* --- Results Section --- */
+        #results-section {
+            display: none;
+            text-align: center;
+        }
+
+        .urgency-badge {
+            display: inline-block;
+            background: #ffeaa7;
+            color: #d35400;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- Testimonials --- */
+        .testimonials {
+            padding: 40px 20px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            font-style: italic;
+            border-left: 5px solid var(--mint);
+        }
+
+        .testimonial-card b {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            color: var(--coral);
+        }
+
+        /* --- Trust Badges --- */
+        .trust-badges {
+            display: flex;
+            justify-content: space-around;
+            padding: 30px 10px;
+            background: #fff;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-item img {
+            width: 40px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 40px 20px;
+            font-size: 0.75rem;
+            color: #95a5a6;
+            text-align: center;
+        }
+
+        /* --- Animations --- */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <section id="hero-section" class="hero fade-in">
+        <div class="container">
+            <div style="background: var(--mint); width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                🥤
+            </div>
+            <h1>Which Smoothie Plan Fits Your Body Type?</h1>
+            <p>Take this 60-second quiz to discover the best smoothie routine for faster fat loss and more energy.</p>
+            <button class="btn" onclick="startQuiz()">Start the Quiz</button>
+        </div>
+    </section>
+
+    <section id="quiz-section" class="container">
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+
+        <div id="question-container" class="card fade-in">
+            </div>
+    </section>
+
+    <section id="results-section" class="container fade-in">
+        <div class="card">
+            <div class="urgency-badge">🔥 Limited Time Offer</div>
+            <h2>Great News! Your Smoothie Plan Is Ready</h2>
+            <p style="margin: 20px 0;">We’ve matched you with a smoothie plan designed to help support weight loss and boost daily energy based on your profile.</p>
+            <p><strong>Special Discount Available Today</strong></p>
+            <a href="#" class="btn" style="margin-top: 20px;">See My Special Offer</a>
+        </div>
+    </section>
+
+    <section class="testimonials container">
+        <h3 style="text-align: center; margin-bottom: 25px;">Real Results from Real Women</h3>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                "I lost 12 lbs in the first 21 days! I finally have the energy to keep up with my kids without the afternoon crash."
+                <b>— Sarah M., 34</b>
+            </div>
+            <div class="testimonial-card">
+                "The belly bloat is gone. These recipes are so delicious, it doesn't even feel like a diet."
+                <b>— Jessica R., 42</b>
+            </div>
+            <div class="testimonial-card">
+                "I've tried everything, but this is the only plan that actually stuck. My skin is glowing!"
+                <b>— Elena G., 29</b>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-badges">
+        <div class="badge-item">
+            <div style="font-size: 24px;">🛡️</div>
+            60-Day Guarantee
+        </div>
+        <div class="badge-item">
+            <div style="font-size: 24px;">🌿</div>
+            Natural Ingredients
+        </div>
+        <div class="badge-item">
+            <div style="font-size: 24px;">✨</div>
+            Easy Recipes
+        </div>
+    </section>
+
+    <footer>
+        <p>Individual results may vary. Always consult a healthcare professional before making dietary changes.</p>
+        <p style="margin-top: 15px;">This page contains affiliate links. We may receive a small commission if you purchase through our link.</p>
+        <p style="margin-top: 20px;">&copy; 2024 Wellness Quiz. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const quizData = [
+            {
+                q: "What is your age range?",
+                options: ["25–30", "31–40", "41–50"]
+            },
+            {
+                q: "What area do you want to improve most?",
+                options: ["Belly fat", "Energy", "Overall health", "Skin & glow"]
+            },
+            {
+                q: "How active is your lifestyle?",
+                options: ["Very active", "Somewhat active", "Mostly sedentary"]
+            },
+            {
+                q: "How many pounds would you like to lose?",
+                options: ["5–10", "10–20", "20+"]
+            },
+            {
+                q: "How motivated are you to start today?",
+                options: ["Very motivated", "Somewhat motivated", "Just exploring"]
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function startQuiz() {
+            document.getElementById('hero-section').style.display = 'none';
+            document.getElementById('quiz-section').style.display = 'block';
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const container = document.getElementById('question-container');
+            const question = quizData[currentQuestion];
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            
+            document.getElementById('progress-bar').style.width = progress + '%';
+
+            let html = `<h2>${question.q}</h2><div class="options-list">`;
+            question.options.forEach(option => {
+                html += `<div class="option-item" onclick="handleNext()">${option}</div>`;
+            });
+            html += `</div>`;
+            
+            container.innerHTML = html;
+        }
+
+        function handleNext() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                const container = document.getElementById('question-container');
+                container.style.opacity = 0;
+                setTimeout(() => {
+                    renderQuestion();
+                    container.style.opacity = 1;
+                }, 200);
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-section').style.display = 'none';
+            document.getElementById('results-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
