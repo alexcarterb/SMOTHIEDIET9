@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-33TB7BL0LN"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-33TB7BL0LN');
-    </script>
-
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5PHJMV59');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Your Perfect Smoothie Plan | Quiz</title>
@@ -191,7 +187,8 @@
     </style>
 </head>
 <body>
-
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5PHJMV59"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section id="hero-section" class="hero fade-in">
         <div class="container">
             <div style="background: var(--mint); width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
@@ -247,7 +244,7 @@
     <footer>
         <p>Individual results may vary. Always consult a healthcare professional before making dietary changes.</p>
         <p style="margin-top: 15px;">This page contains affiliate links. We may receive a small commission if you purchase through our link.</p>
-        <p style="margin-top: 20px;">&copy; 2026 Wellness Quiz. All rights reserved.</p>
+        <p style="margin-top: 20px;">&copy; 2024 Wellness Quiz. All rights reserved.</p>
     </footer>
 
     <script>
@@ -275,7 +272,7 @@
 
             let html = `<h2>${question.q}</h2><div class="options-list">`;
             question.options.forEach(option => {
-                html += `<div class="option-item" style="padding: 15px; margin-bottom: 10px; border: 2px solid #eee; border-radius: 12px; cursor: pointer;" onclick="handleNext()">${option}</div>`;
+                html += `<div class="option-item" onclick="handleNext()">${option}</div>`;
             });
             html += `</div>`;
             container.innerHTML = html;
